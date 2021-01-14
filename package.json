@@ -4,11 +4,7 @@
   "description": "This app allows communication between users",
   "main": "app.js",
   "scripts": {
-<<<<<<< HEAD
     "devStart": "nodemon server/app.js"
-=======
-    "devStart": "nodemon app.js"
->>>>>>> 463d1b932ac90c3da15680d40e79bbbdcc7f00c8
   },
   "author": "Yuto Omachi",
   "license": "ISC",

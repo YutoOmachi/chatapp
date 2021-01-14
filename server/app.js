@@ -9,12 +9,10 @@ const Message = require('./Message.js');
 require('dotenv').config()
 
 const messages = [];
-
-
-app.use(express.static(__dirname));
-
-const hostname = '127.0.0.1';;
+const hostname = 'localhost';;
 const port = process.env.PORT || 3000;
+
+app.use(express.static("client"));
 
 app.get('/', (req,res) => {
     let reqPath = path.join(__dirname, '../client/index.html')
@@ -27,7 +25,6 @@ io.sockets.on('connection', function(socket) {
     console.log('A user connected');
 
     socket.on('join', ()=>{
-        console.log("A user joined");
         socket.emit('loadMessage', messages);
     });
 

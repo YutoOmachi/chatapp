@@ -12,9 +12,20 @@ form.addEventListener('submit', function(e){
    }
 });
 
+//On connect to server
 socket.on('connect', function(data) {
    socket.emit('join');
 });
+
+//Loading messages
+socket.on('loadMessage', function(msgs){
+  for(let i=0; i<msgs.length; i++){
+     let item = document.createElement('li');
+     item.textContent = msgs[i].text;
+     messages.appendChild(item);
+     window.scrollTo(0, document.body.scrollHeight);
+  }
+})
 
 // When new message is created
 socket.on('newMessage', function(msg) {
