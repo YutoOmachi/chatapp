@@ -23,14 +23,18 @@ app.get('/', (req,res) => {
 
 
 //Whenever someone connects this gets executed
-io.on('connection', function(socket) {
+io.sockets.on('connection', function(socket) {
     console.log('A user connected');
 
+    socket.on('join', ()=>{
+        console.log("A user joined");
+        socket.emit('loadMessage', messages);
+    });
+
     //When char message event is sent
-    socket.on('newMessage', (msg)=>{
+    socket.on('newMessage', msg=>{
         let message = new Message(msg);
         messages.push(message);
-        console.log(messages)
         io.emit('newMessage', msg);
     })
 
