@@ -11,10 +11,13 @@ form.addEventListener('submit', function(e){
    }
 });
 
-socket.on('user connected', function(messages){
+
+//When there is a new connection, display messages
+socket.on('userConnected', function(msgs){
+    console.log("here I am starting")
     for(let i=0; i<messages.length(); i++){
         var item = document.createElement('li');
-        item.textContent = msg;
+        item.textContent = msgs[i];
         messages.appendChild(item);
     }
 });

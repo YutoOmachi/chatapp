@@ -26,7 +26,7 @@ app.get('/', (req,res) => {
 io.on('connection', function(socket) {
     console.log('A user connected');
 
-    socket.emit('user connected', messages);
+    io.emit('userConnected', messages);
 
     //When char message event is sent
     socket.on('chat message', (msg)=>{
