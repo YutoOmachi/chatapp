@@ -26,22 +26,25 @@ app.get('/', (req,res) => {
 io.on('connection', function(socket) {
     console.log('A user connected');
 
-    io.emit('userConnected', messages);
-
     //When char message event is sent
-    socket.on('chat message', (msg)=>{
+    socket.on('newMessage', (msg)=>{
         let message = new Message(msg);
         messages.push(message);
         console.log(messages)
-        io.emit('chat message', msg);
+        io.emit('newMessage', msg);
     })
 
     //Whenever someone disconnects this piece of code executed
     socket.on('disconnect', function () {
        console.log('A user disconnected');
     });
+
+    socket.on('error', function (err) {
+        console.log(err);
+    });
  });
 
+ 
 
 server.listen(port, ()=>{
     console.log('Server running at http://'+ hostname + ':' + port + '/');

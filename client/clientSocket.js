@@ -1,12 +1,12 @@
-var socket = io();
+const socket = io();
 
-var form  = document.getElementById('form');
-var input = document.getElementById('input');
+const form  = document.getElementById('form');
+const input = document.getElementById('input');
 
 form.addEventListener('submit', function(e){
    e.preventDefault();
    if(input.value){
-      socket.emit('chat message', input.value);
+      socket.emit('newMessage', input.value);
       input.value = '';
    }
 });
@@ -23,7 +23,7 @@ socket.on('userConnected', function(msgs){
 });
 
 // When new message is created
-socket.on('chat message', function(msg) {
+socket.on('newMessage', function(msg) {
   var item = document.createElement('li');
   item.textContent = msg;
   messages.appendChild(item);
