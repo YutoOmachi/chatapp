@@ -14,15 +14,20 @@ h1 {
 }
 
 li{
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     width: min-content;
+    height: min-content;
     border-radius: 5px;
-    background-color: rgb(35, 153, 122);
+    background-color:rgb(80, 80, 80);
     color: white;
 }
 
-
+.myMessage{
+    background-color: rgb(35, 153, 122);
+    color: white;
+    text-align: right;
+}
 
 #messages {
     list-style-type: none;

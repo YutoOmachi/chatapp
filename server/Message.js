@@ -1,4 +1,5 @@
-function Message(text) {
+function Message(userId, text) {
+    this.userId = userId;
     this.text = text;
 }
 

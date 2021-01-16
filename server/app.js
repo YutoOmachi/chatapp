@@ -29,10 +29,10 @@ io.sockets.on('connection', function(socket) {
     });
 
     //When char message event is sent
-    socket.on('newMessage', msg=>{
-        let message = new Message(msg);
+    socket.on('newMessage', (id, msg)=>{
+        let message = new Message(id, msg);
         messages.push(message);
-        io.emit('newMessage', msg);
+        io.emit('newMessage', id, msg);
     })
 
     //Whenever someone disconnects this piece of code executed
