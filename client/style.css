@@ -2,38 +2,58 @@ body {
     width: 100%;
     margin: 0px;
     overflow-x: hidden;
-    padding: 0px 20px 10px 20px;    
+    padding: 10px 20px 10px 20px;    
     background: rgb(30, 40, 50);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 28px;
 }
 
 h1 {
     color: rgb(35, 153, 122);
+    margin: 50px;
 }
 
 li{
     padding: 10px;
     margin: 10px;
-    width: min-content;
-    height: min-content;
-    border-radius: 5px;
+    width: fit-content;
+    max-width: 80%;
+    border-radius: 10px;
     background-color:rgb(80, 80, 80);
     color: white;
+    clear: both;
 }
 
-.myMessage{
+li.myMessage{
+    margin: 5px;
     background-color: rgb(35, 153, 122);
     color: white;
-    text-align: right;
+    float: right;
+}
+
+.userId{
+    color:rgb(35, 153, 122);
+    line-height: 32px;
 }
 
 #messages {
     list-style-type: none;
+    width: 90%;
+    margin-bottom: 100px;
+}
+
+#messages::after{
+    clear: both;
+    height: 0;
+    width: 100%;
+    content: '';
+    display: block;
 }
 
 #form {
+    clear: both;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -41,7 +61,6 @@ li{
     height: 90px;
     display: flex;
     flex-wrap: nowrap;
-    border-width: 20px;
     border-color: black;
     background: rgb(50, 50, 50);
 }

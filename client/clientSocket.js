@@ -22,9 +22,11 @@ socket.on('connect', function(data) {
 
 //Loading messages
 socket.on('loadMessage', function(msgObjects){
+  messages.innerHTML='';
   for(let i=0; i<msgObjects.length; i++){
     let item = document.createElement('li');
-    item.textContent = "<"+msgObjects[i].userId+">\n"+ msgObjects[i].text;
+    const name = "<span class='userId'>" +msgObjects[i].userId+"</span>"
+    item.innerHTML = name+"<br>"+msgObjects[i].text;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
   }
@@ -32,14 +34,15 @@ socket.on('loadMessage', function(msgObjects){
 
 // When new message is created
 socket.on('newMessage', function(id, msg) {
-   var item = document.createElement('li');
-   if(id==myId){
-    item.textContent = msg;
+  var item = document.createElement('li');
+  if(id==myId){
+    item.innerHTML = msg;
     item.classList.add("myMessage");
-   }
-   else{
-     item.textContent = "<"+id+">\n"+msg;
-   }
-   messages.appendChild(item);
-   window.scrollTo(0, document.body.scrollHeight);
+  }
+  else{
+    const name = "<span class='userId'>"+id+"</span>"
+    item.innerHTML = name+"</br>"+msg;
+  }
+  messages.appendChild(item);
+  window.scrollTo(0, document.body.scrollHeight);
 });
