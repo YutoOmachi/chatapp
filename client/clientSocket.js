@@ -4,7 +4,7 @@ const form  = document.getElementById('form');
 const input = document.getElementById('input');
 const messages = document.getElementById('messages');
 
-let myId = "";
+const myId = document.getElementById('username').innerText;
 
 form.addEventListener('submit', function(e){
    e.preventDefault();
@@ -16,7 +16,6 @@ form.addEventListener('submit', function(e){
 
 //On connect to server
 socket.on('connect', function(data) {
-  myId = socket.id;
   socket.emit('join');
 });
 

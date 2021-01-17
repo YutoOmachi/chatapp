@@ -55,7 +55,7 @@ li.myMessage{
 #form {
     clear: both;
     position: fixed;
-    bottom: 0;
+    bottom: -10;
     left: 0;
     right: 0;
     height: 90px;

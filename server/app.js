@@ -13,18 +13,27 @@ const hostname = 'localhost';;
 const port = process.env.PORT || 3000;
 
 app.use(express.static("client"));
+app.use(express.urlencoded({
+    extended: true
+}));
 
-app.get('/', (req,res) => {
+// app.get('/', (req,res) => {
+//     let reqPath = path.join(__dirname, '../client/index.html')
+//     res.sendFile(reqPath);
+// })
+
+app.get('/login', (req,res)=>{
     let reqPath = path.join(__dirname, '../client/login.html')
-    console.log(reqPath);
     res.sendFile(reqPath);
 })
 
+app.post('/', (req, res) => {
+    let reqPath = path.join(__dirname, '../client/index.ejs');
+    res.render(reqPath, req.body);
+})
 
 //Whenever someone connects this gets executed
 io.sockets.on('connection', function(socket) {
-    console.log('A user connected');
-
     socket.on('join', ()=>{
         socket.emit('loadMessage', messages);
     });
@@ -38,7 +47,6 @@ io.sockets.on('connection', function(socket) {
 
     //Whenever someone disconnects this piece of code executed
     socket.on('disconnect', function () {
-       console.log('A user disconnected');
     });
 
     socket.on('error', function (err) {

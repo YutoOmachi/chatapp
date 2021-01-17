@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="login.css">
         <title>Socket.IO chat</title>
     </head>
     <body>
-        <form action="">
-            <input type="text" placeholder="Type your name" autocomplete="off">
-            <input type="text" placeholder="Type your password" autocomplete="off">
+        <h2>ChatApp Login/Register</h2>
+        <form action="/" method="POST">
+            <b>Username</b>
+            <input name="username" type="text" placeholder="Type your name" autocomplete="off">
+            <b>Password</b>
+            <input name="password" type="text" placeholder="Type your password" autocomplete="off">
             <button>SUBMIT</button>
         </form> 
     </body>

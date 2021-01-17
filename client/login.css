@@ -1,0 +1,38 @@
+body {
+    width: 100%;
+    margin: 0px;
+    overflow-x: hidden;
+    padding: 10px 20px 10px 20px;    
+    background: rgb(30, 40, 50);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+h2{
+    margin: 100px auto 100px auto;
+    width: 50%;
+    color: rgb(35, 153, 122);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+}
+
+input{
+    width: 50%;
+    height: 30px;
+    margin-bottom: 40px;
+}
+
+button {
+    width: 30%;
+    height: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
