@@ -10,7 +10,7 @@ const socket = require('./socket')(io);
 
 const dbHandler = require('./dbHandler');
 
-const hostname = 'localhost';;
+const hostname = 'localhost';
 const port = process.env.PORT || 3000;
 
 app.use(express.static("client"));

@@ -14,8 +14,7 @@ module.exports = function(io){
         socket.on('newMessage', (name, msg)=>{
             let message = new Message(name, msg);
             messages.push(message);
-            console.log(messages);
-            dbHandler.saveMessage(name, msg)
+            dbHandler.saveMessage(name, msg);
             io.emit('newMessage', name, msg);
         })
     
