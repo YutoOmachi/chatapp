@@ -4,7 +4,7 @@ const dbHandler = require('./dbHandler');
 module.exports = async function(io){
     let messages = [];
     try{
-        let messages = await dbHandler.setUpDBAndTable();
+        messages = await dbHandler.setUpDBAndTable();
     }
     catch(err) {
         throw err;

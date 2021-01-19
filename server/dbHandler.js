@@ -8,7 +8,7 @@ module.exports = {
             try{
                 await initializeDB();
                 await initializeTable();
-                let result = await loadMessages;
+                let result = await loadMessages();
                 resolve(result);
             }
             catch(err){

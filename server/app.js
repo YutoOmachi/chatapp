@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config()
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const socket = require('./socket')(io);
+require('./socket')(io);
 
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;
