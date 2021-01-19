@@ -1,12 +1,10 @@
 const express= require('express');
 const app = express();
 const path = require('path');
-const db = require('./dbHandler');
 require('dotenv').config()
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const socket = require('./socket')(io);
-const dbHandler = require('./dbHandler');
 
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;

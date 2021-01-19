@@ -2,15 +2,15 @@ const Message = require('./Message.js');
 const dbHandler = require('./dbHandler');
 
 module.exports = async function(io){
+    let messages = [];
     try{
-        await dbHandler.setUpDBAndTable();
+        let messages = await dbHandler.setUpDBAndTable();
     }
     catch(err) {
         throw err;
     }
-    const messages = dbHandler.loadMessages();
-    io.sockets.on('connection', function(socket) {
 
+    io.sockets.on('connection', function(socket) {
         socket.on('join', ()=>{
             socket.emit('loadMessage', messages);
         });

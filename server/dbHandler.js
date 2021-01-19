@@ -3,18 +3,18 @@ const mysql = require('mysql');
 const Message = require('./Message.js');
 
 module.exports = {
-    setUpDBAndTable: async function(){
+    setUpDBAndTable: function(){
         return new Promise(async(resolve, reject) => {
             try{
                 await initializeDB();
                 await initializeTable();
-                resolve("Database is set now all set!");
+                let result = await loadMessages;
+                resolve(result);
             }
             catch(err){
                 reject(err);
             }  
         })
-
     },
 
     saveMessage: function(username, text){
@@ -23,20 +23,6 @@ module.exports = {
         con.query(sql,[username, text], (err, result) => {
             if(err) throw err
         })
-    },
-
-    loadMessages: function(){
-        const con = connectToDB();
-        let messages = [];
-        let sql = "SELECT * FROM chatlog";
-        con.query(sql, (err, result) => {
-            if(err) throw err
-            for(let i=0; i<result.length; i++){
-                let resultObj = Object.assign({}, result[i]);
-                messages.push(new Message(resultObj.username, resultObj.text));
-            }
-        })
-        return messages;
     }
 }
 
@@ -77,5 +63,23 @@ function initializeTable(){
         con.end();
         resolve();
     })
+}
+
+
+function loadMessages(){
+    return new Promise((resolve, reject) => {
+        const con = connectToDB();
+        let messages = [];
+        let sql = "SELECT * FROM chatlog";
+        con.query(sql, (err, result) => {
+            if(err) reject(err)
+            for(let i=0; i<result.length; i++){
+                let resultObj = Object.assign({}, result[i]);
+                messages.push(new Message(resultObj.username, resultObj.text));
+            }
+        })
+        resolve(messages);
+    })
+
 }
 
