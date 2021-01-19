@@ -3,11 +3,9 @@ const app = express();
 const path = require('path');
 const db = require('./dbHandler');
 require('dotenv').config()
-
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const socket = require('./socket')(io);
-
 const dbHandler = require('./dbHandler');
 
 const hostname = 'localhost';
@@ -33,8 +31,6 @@ app.post('/', (req, res) => {
     if(username == "") username = "Anonymous"
     res.render(reqPath, {username: username});
 })
-
-db.setUpDBAndTable();
 
 server.listen(port, ()=>{
     console.log('Server running at http://'+ hostname + ':' + port + '/');

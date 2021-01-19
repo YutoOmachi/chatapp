@@ -1,9 +1,14 @@
 const Message = require('./Message.js');
 const dbHandler = require('./dbHandler');
 
-module.exports = function(io){
+module.exports = async function(io){
+    try{
+        await dbHandler.setUpDBAndTable();
+    }
+    catch(err) {
+        throw err;
+    }
     const messages = dbHandler.loadMessages();
-
     io.sockets.on('connection', function(socket) {
 
         socket.on('join', ()=>{

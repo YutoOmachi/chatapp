@@ -4,14 +4,17 @@ const Message = require('./Message.js');
 
 module.exports = {
     setUpDBAndTable: async function(){
-        try{
-            await initializeDB();
-            await initializeTable();
-            console.log("Database is set now all set!");
-        }
-        catch(err){
-            throw err;
-        }
+        return new Promise(async(resolve, reject) => {
+            try{
+                await initializeDB();
+                await initializeTable();
+                resolve("Database is set now all set!");
+            }
+            catch(err){
+                reject(err);
+            }  
+        })
+
     },
 
     saveMessage: function(username, text){
@@ -19,7 +22,6 @@ module.exports = {
         let sql = "INSERT INTO chatlog (username, text) VALUES (? , ?)";
         con.query(sql,[username, text], (err, result) => {
             if(err) throw err
-            console.log("message saved to database successfully")
         })
     },
 
@@ -54,11 +56,9 @@ function initializeDB() {
             user: process.env.DB_USER, 
             password: process.env.DB_PASS
         });
-
         let sql = "CREATE DATABASE IF NOT EXISTS " + process.env.DB_NAME;
         con.query(sql, (err, result, fields)=>{
             if(err) reject(err);
-            console.log("Database is created!");
         })
         con.end(); 
         resolve();
