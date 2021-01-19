@@ -26,8 +26,9 @@ app.get('/login', (req,res)=>{
 app.post('/', (req, res) => {
     let reqPath = path.join(__dirname, '../client/index.ejs');
     let username = req.body.username;
-    if(username == "") username = "Anonymous"
-    res.render(reqPath, {username: username});
+    if(username == "") res.redirect("/login");
+    else res.render(reqPath, {username: username});
+
 })
 
 server.listen(port, ()=>{

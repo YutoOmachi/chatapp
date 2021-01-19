@@ -30,10 +30,9 @@ socket.on('loadMessage', function(msgObjects){
       item.classList.add("myMessage");
     }
     else{
-      const username = "<span class='username'>" +name+"</span>"
+      const username = "<span class='username'>"+name+"</span>"
       item.innerHTML = username+"<br>"+msgObjects[i].text;
     }
-
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
   }
@@ -47,8 +46,8 @@ socket.on('newMessage', function(name, msg) {
     item.classList.add("myMessage");
   }
   else{
-    const name = "<span class='username'>"+name+"</span>"
-    item.innerHTML = name+"</br>"+msg;
+    const username = "<span class='username'>"+name+"</span>"
+    item.innerHTML = username+"</br>"+msg;
   }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
