@@ -24,7 +24,7 @@ socket.on('loadMessage', function(msgObjects){
   messages.innerHTML='';
   for(let i=0; i<msgObjects.length; i++){
     let item = document.createElement('li');
-    const name = "<span class='userId'>" +msgObjects[i].userId+"</span>"
+    const name = "<span class='username'>" +msgObjects[i].username+"</span>"
     item.innerHTML = name+"<br>"+msgObjects[i].text;
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
@@ -39,7 +39,7 @@ socket.on('newMessage', function(id, msg) {
     item.classList.add("myMessage");
   }
   else{
-    const name = "<span class='userId'>"+id+"</span>"
+    const name = "<span class='username'>"+id+"</span>"
     item.innerHTML = name+"</br>"+msg;
   }
   messages.appendChild(item);

@@ -1,7 +1,8 @@
 const Message = require('./Message.js');
+const dbHandler = require('./dbHandler');
 
 module.exports = function(io){
-    const messages = [];
+    const messages = dbHandler.loadMessages();
 
     io.sockets.on('connection', function(socket) {
 
@@ -10,10 +11,12 @@ module.exports = function(io){
         });
     
         //When char message event is sent
-        socket.on('newMessage', (id, msg)=>{
-            let message = new Message(id, msg);
+        socket.on('newMessage', (name, msg)=>{
+            let message = new Message(name, msg);
             messages.push(message);
-            io.emit('newMessage', id, msg);
+            console.log(messages);
+            dbHandler.saveMessage(name, msg)
+            io.emit('newMessage', name, msg);
         })
     
         //Whenever someone disconnects this piece of code executed
