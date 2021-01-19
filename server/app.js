@@ -4,7 +4,7 @@ const path = require('path');
 require('dotenv').config()
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-require('./socket')(io);
+require('./serverSocket')(io);
 
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;
@@ -24,7 +24,7 @@ app.get('/login', (req,res)=>{
 })
 
 app.post('/', (req, res) => {
-    let reqPath = path.join(__dirname, '../client/index.ejs');
+    let reqPath = path.join(__dirname, '../client/chat.ejs');
     let username = req.body.username;
     if(username == "") res.redirect("/login");
     else res.render(reqPath, {username: username});

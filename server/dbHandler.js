@@ -3,8 +3,8 @@ const mysql = require('mysql');
 const Message = require('./Message.js');
 
 module.exports = {
-    setUpDBAndTable: function(){
-        return new Promise(async(resolve, reject) => {
+    setUpDBAndTable: async function(){
+        return new Promise(async (resolve, reject) => {
             try{
                 await initializeDB();
                 await initializeTable();
@@ -72,7 +72,12 @@ function loadMessages(){
         let messages = [];
         let sql = "SELECT * FROM chatlog";
         con.query(sql, (err, result) => {
+            if(result==undefined){
+                loadMessages();
+                return;
+            } 
             if(err) reject(err)
+            if(result==undefined) resolve();
             for(let i=0; i<result.length; i++){
                 let resultObj = Object.assign({}, result[i]);
                 messages.push(new Message(resultObj.username, resultObj.text));

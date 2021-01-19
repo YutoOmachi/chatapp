@@ -44,7 +44,7 @@ li.myMessage{
     margin-bottom: 100px;
 }
 
-#messages::after{
+#messages:after{
     clear: both;
     height: 0;
     width: 100%;
