@@ -1,5 +1,5 @@
-const Message = require('./Message.js');
-const dbHandler = require('./dbHandler');
+const Message = require('../classes/Message.js');
+const dbHandler = require('../database/dbHandler');
 
 module.exports = async function(io){
     let messages = [];

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const mysql = require('mysql');
-const Message = require('./Message.js');
+const Message = require('../classes/Message.js');
 
 module.exports = {
     setUpDBAndTable: async function(){
