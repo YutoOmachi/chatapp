@@ -11,4 +11,5 @@ module.exports = (app) => {
     }));
     app.use("/", require("./root"));
     app.use("/login", require("./login"));
+    app.use("/register", require("./register"));
 };

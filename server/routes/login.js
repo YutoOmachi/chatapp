@@ -8,5 +8,11 @@ router
         let reqPath = path.join(__dirname, '../../client/views/login.html');
         res.sendFile(reqPath);
     })
+    .post((req, res) => {
+        let reqPath = path.join(__dirname, "../../client/views/chat.ejs");
+        let username = req.body.username;
+        if(username == "") res.redirect("/login");
+        else res.render(reqPath, {username: username});
+    })
 
 module.exports = router;

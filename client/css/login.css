@@ -22,7 +22,7 @@ form{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-height: 60vh;
+    min-height: 50vh;
 }
 
 input{
@@ -37,4 +37,15 @@ button {
     height: 40px;
     margin-right: auto;
     margin-left: auto;
+}
+
+a {
+    color:rgb(221, 79, 79);
+}
+
+#prompt-register{
+    text-align: center;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto; 
 }
