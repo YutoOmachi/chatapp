@@ -1,4 +1,3 @@
-require('dotenv').config();
 const con = require("./dbConnect");
 const mysql = require('mysql');
 

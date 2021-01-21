@@ -1,4 +1,3 @@
-require('dotenv').config();
 const Message = require('../classes/Message.js');
 
 module.exports = ()=>{

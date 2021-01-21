@@ -4,7 +4,8 @@
   "description": "This app allows communication between users",
   "main": "app.js",
   "scripts": {
-    "devStart": "nodemon app.js"
+    "devStart": "nodemon app.js",
+    "dbinit": "node server/database/dbInitializer.js"
   },
   "author": "Yuto Omachi",
   "license": "ISC",

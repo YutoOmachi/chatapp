@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 module.exports = (username, text)=> {
     const con = require("./dbConnect")();
     let sql = "INSERT INTO chatlog (username, text) VALUES (? , ?)";
