@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="login.css">
@@ -6,12 +5,15 @@
     </head>
     <body>
         <h2>ChatApp Login</h2>
+        <% if (messages.error) { %> 
+            <%= messages.error %>
+        <% } %>
         <form action="/login" method="POST">
-            <b>Username</b>
-            <input name="username" type="text" placeholder="Type your name" autocomplete="off">
+            <b>Email</b>
+            <input name="email" type="text" placeholder="Type your password" autocomplete="off">
             <b>Password</b>
             <input name="password" type="text" placeholder="Type your password" autocomplete="off">
-            <button>Login</button>
+            <button type="submit">Login</button>
         </form> 
         <div id="prompt-register">Don't have an account? Click <a href="/register">here</a> to register!</div>
     </body>

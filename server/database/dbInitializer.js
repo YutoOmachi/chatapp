@@ -18,13 +18,18 @@ initializeDB = ()=>{
 }
 
 
-initializeTable = ()=>{
+initializeTables = ()=>{
     return new Promise((resolve, reject) => {
         let sql = "CREATE TABLE IF NOT EXISTS chatlog"+
             "(id INT AUTO_INCREMENT PRIMARY KEY, username varchar(255) NOT NULL, text varchar(255) NOT NULL)";
         con.query(sql, (err, result)=>{
             if(err) reject(err);
         })
+        sql = "CREATE TABLE IF NOT EXISTS users"+
+        "(id INT AUTO_INCREMENT PRIMARY KEY, username varchar(255) NOT NULL, text varchar(255) NOT NULL)";
+    con.query(sql, (err, result)=>{
+        if(err) reject(err);
+    })
         con.end();
         resolve();
     })
@@ -35,5 +40,5 @@ initializeTable = ()=>{
 }());
 
 (async function() {
-    await initializeTable();
+    await initializeTables();
 }());
