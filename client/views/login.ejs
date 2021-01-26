@@ -1,20 +1,24 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="login.css">
+        <link rel="stylesheet" type="text/css" href="login-register.css">
         <title>Socket.IO chat</title>
     </head>
     <body>
         <h2>ChatApp Login</h2>
-        <% if (messages.error) { %> 
-            <%= messages.error %>
-        <% } %>
+
         <form action="/login" method="POST">
+            <div id="error">
+            <% if (messages.error) { %> 
+                *<%= messages.error %>
+            <% } %>
+            <% messages %>
+            </div>
             <b>Email</b>
             <input name="email" type="text" placeholder="Type your password" autocomplete="off">
             <b>Password</b>
             <input name="password" type="text" placeholder="Type your password" autocomplete="off">
             <button type="submit">Login</button>
         </form> 
-        <div id="prompt-register">Don't have an account? Click <a href="/register">here</a> to register!</div>
+        <div id="jump-to-login-register">Don't have an account? Click <a href="/register">here</a> to register!</div>
     </body>
 </html>

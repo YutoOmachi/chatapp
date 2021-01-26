@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require('path');
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const router = express.Router()
 
 
@@ -16,6 +16,7 @@ router
             let username = req.body.username;
             let email = req.body.email;
             require("../database/dbInsert").insertUser(username, email, hashedPassword);
+            req.flash("error", "Registration Successfull!");
             res.redirect("/login");
         } catch(err) {
             console.log(err)

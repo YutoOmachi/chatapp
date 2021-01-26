@@ -15,6 +15,10 @@ h1 {
     margin: 50px;
 }
 
+p {
+    margin: 0px 50px 50px 50px;
+}
+
 li{
     padding: 10px;
     margin: 10px;
@@ -91,4 +95,9 @@ li.myMessage{
 
 #send:focus{
     outline: none;
+}
+
+#username {
+    font-style: italic;
+    font-weight: bold;
 }
