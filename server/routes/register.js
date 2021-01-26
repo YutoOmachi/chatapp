@@ -13,9 +13,11 @@ router
     .post( async (req,res) => {
         try{
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
-            console.log({username: req.body.username, email: req.body.email, password: hashedPassword});
+            let username = req.body.username;
+            let email = req.body.email;
+            require("../database/dbInsert").insertUser(username, email, hashedPassword);
         } catch(err) {
-            res.redirect("/register");
+            res.redirect("/login");
         }
     })
 

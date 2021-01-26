@@ -12,7 +12,7 @@ module.exports = async function(io){
             socket.on('newMessage', (name, msg)=>{
                 let message = new Message(name, msg);
                 messages.push(message);
-                require("../database/dbInsert")(name, msg);
+                require("../database/dbInsert").insertChatlog(name, msg);
                 io.emit('newMessage', name, msg);
             })
         

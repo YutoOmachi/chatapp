@@ -1,4 +1,3 @@
-const con = require("./dbConnect");
 const mysql = require('mysql');
 
 initializeDB = ()=>{
@@ -18,27 +17,41 @@ initializeDB = ()=>{
 }
 
 
-initializeTables = ()=>{
+initializeChatlogTables = ()=>{
     return new Promise((resolve, reject) => {
+        const con = require("./dbConnect")();
         let sql = "CREATE TABLE IF NOT EXISTS chatlog"+
             "(id INT AUTO_INCREMENT PRIMARY KEY, username varchar(255) NOT NULL, text varchar(255) NOT NULL)";
         con.query(sql, (err, result)=>{
             if(err) reject(err);
         })
-        sql = "CREATE TABLE IF NOT EXISTS users"+
-        "(id INT AUTO_INCREMENT PRIMARY KEY, username varchar(255) NOT NULL, text varchar(255) NOT NULL)";
-    con.query(sql, (err, result)=>{
-        if(err) reject(err);
+        con.end();
+        resolve();
     })
+}
+
+initializeUserTables = ()=>{
+    return new Promise((resolve, reject) => {
+        const con = require("./dbConnect")();
+        sql = "CREATE TABLE IF NOT EXISTS users"+
+        "(id INT AUTO_INCREMENT PRIMARY KEY, username varchar(255) NOT NULL UNIQUE, " + 
+        "email varchar(255) NOT NULL UNIQUE, password varchar(255) NOT NULL UNIQUE, date_added TIMESTAMP NOT NULL)";
+        con.query(sql, (err, result)=>{
+            if(err) reject(err);
+        })
         con.end();
         resolve();
     })
 }
 
 (async function() {
-    await initializeDB();
+    try{
+        await initializeDB();
+        await initializeChatlogTables();
+        await initializeUserTables();
+    }
+    catch(err){
+        console.log(err);
+    }
 }());
 
-(async function() {
-    await initializeTables();
-}());

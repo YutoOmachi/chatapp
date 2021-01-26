@@ -5,11 +5,11 @@ const router = express.Router()
 const passport = require("passport");
 
 
-const users = [{id:"123", email: "m@il", username: "yuto", password: "password"}];
+const users = [{id:"123", email: "m@il", username: "yuto", password: "password"},
+{id:"1234", email: "mail", username: "juto", password: "pass"}];
 
 console.log(users.find(user => user.email == "mail"));
 
-/* This should go to whereevr it is used*/
 const initializePassport = require('../../passport-config');
 initializePassport(passport, 
     email => users.find(user => user.email === email),
@@ -23,7 +23,7 @@ router
         res.render(reqPath);
     })
     .post(passport.authenticate('local', {
-        successRedirect: "/success",
+        successRedirect: "/",
         failureRedirect: "/login",
         failureFlash: true
     }));

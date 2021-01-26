@@ -5,7 +5,13 @@ const router = express.Router()
 router
     .route("/")
     .get((req,res) => {
-        res.redirect("/login");
+        if(req.user){
+            let reqPath = path.join(__dirname, "../../client/views/chat.ejs");
+            res.render(reqPath, {username: req.user.username});        
+        }
+        else{
+            res.redirect("/login");
+        }
     })
 
 module.exports = router;
