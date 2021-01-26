@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 require('./server/socket/serverSocket')(io);
+require('dotenv').config()
 
 const hostname = 'localhost';
 const port = process.env.PORT || 3000;

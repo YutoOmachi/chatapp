@@ -25,7 +25,7 @@ socket.on('loadMessage', function(msgObjects){
   for(let i=0; i<msgObjects.length; i++){
     let item = document.createElement('li');
     const name = msgObjects[i].username
-    if(name!="Anonymous" && name==myName){
+    if(name==myName){
       item.innerHTML = msgObjects[i].text;
       item.classList.add("myMessage");
     }

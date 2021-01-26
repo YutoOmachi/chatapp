@@ -2,13 +2,13 @@ const Message = require('../classes/Message.js');
 
 module.exports = async function(io){
     try{
-        let messages = await require("../database/dbLoadMessage")();    
+        let messages = await require("../database/dbSelect").selectChatlog();    
         io.sockets.on('connection', function(socket) {
             socket.on('join', ()=>{
                 socket.emit('loadMessage', messages);
             });
         
-            //When char message event is sent
+            //When chat message event is sent
             socket.on('newMessage', (name, msg)=>{
                 let message = new Message(name, msg);
                 messages.push(message);

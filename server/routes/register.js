@@ -16,8 +16,9 @@ router
             let username = req.body.username;
             let email = req.body.email;
             require("../database/dbInsert").insertUser(username, email, hashedPassword);
-        } catch(err) {
             res.redirect("/login");
+        } catch(err) {
+            console.log(err)
         }
     })
 
